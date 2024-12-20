@@ -1,38 +1,41 @@
 #include <iostream>
 #include <vector>
-#include <string>
-
 using namespace std;
 
-class Solution {
-  public:
-    int dataTypeSize(string str) {
-        if (str == "Character") {
-            return sizeof(char);
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+       
+        int minIndex = i;
+        
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
         }
-        if (str == "Integer") {
-            return sizeof(int);
-        }
-        if (str == "Long") {
-            return sizeof(long);
-        }
-        if (str == "Float") {
-            return sizeof(float);
-        }
-        if (str == "Double") {
-            return sizeof(double);
-        }
-        return -1; // Invalid input
+      
+        swap(arr[i], arr[minIndex]);
     }
-};
+}
 
 int main() {
-    Solution solution;
+    vector<int> arr1 = {4, 1, 3, 9, 7};
+    vector<int> arr2 = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    vector<int> arr3 = {38, 31, 20, 14, 30};
 
-    vector<string> testCases = {"Character", "Integer", "Long", "Float", "Double", "Unknown"};
-    for (const string& testCase : testCases) {
-        cout << "Size of " << testCase << ": " << solution.dataTypeSize(testCase) << " byte(s)" << endl;
-    }
+    selectionSort(arr1);
+    selectionSort(arr2);
+    selectionSort(arr3);
+
+   
+    for (int num : arr1) cout << num << " ";
+    cout << endl;
+
+    for (int num : arr2) cout << num << " ";
+    cout << endl;
+
+    for (int num : arr3) cout << num << " ";
+    cout << endl;
 
     return 0;
 }
